@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Галерея</title>
+<style>
+.carousel-container {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  margin: 50px auto;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  display: none;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.carousel-slide img.active {
+  display: block;
+}
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+</style>
+</head>
+<body>
+
+<div class="carousel-container">
+  <div class="carousel-slide" id="carousel-slide">
+    <img src="https://raw.githubusercontent.com/username/confluence-gallery/main/image1.jpg" class="active" alt="">
+    <img src="https://raw.githubusercontent.com/username/confluence-gallery/main/image2.jpg" alt="">
+    <img src="https://raw.githubusercontent.com/username/confluence-gallery/main/image3.jpg" alt="">
+    <!-- Добавь сюда все 22 картинки -->
+  </div>
+  <button class="prev" onclick="prevSlide()">&#10094;</button>
+  <button class="next" onclick="nextSlide()">&#10095;</button>
+</div>
+
+<script>
+const images = document.querySelectorAll('#carousel-slide img');
+let current = 0;
+
+function showSlide(index) {
+  images[current].classList.remove('active');
+  current = (index + images.length) % images.length;
+  images[current].classList.add('active');
+}
+
+function prevSlide() { showSlide(current - 1); }
+function nextSlide() { showSlide(current + 1); }
+</script>
+
+</body>
+</html>
